@@ -9,10 +9,21 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Service
 public class CompanyDetailsServiceImpl implements CompanyDetailsService {
-    CompanyDetailsRepository repository;
+
+    private CompanyDetailsRepository repository;
 
     @Override
-    public CompanyDetails savecompanyDetails(CompanyDetails companyDetails) {
-        return repository.save(companyDetails);
+    public CompanyDetails saveCompanyDetails(CompanyDetails details) {
+
+        // check if record already exists for this appId
+        CompanyDetails existing =
+                repository.findByAppId(details.getAppId());
+
+        // if exists → convert save into update
+        if (existing != null) {
+            details.setId(existing.getId());
+        }
+
+        return repository.save(details);
     }
 }

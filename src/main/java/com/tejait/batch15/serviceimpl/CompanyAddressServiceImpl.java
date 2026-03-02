@@ -8,10 +8,24 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Service
 public class CompanyAddressServiceImpl implements CompanyAddressService {
+
     CompanyAddressRepository repository;
 
-    @Override
-    public CompanyAddress savecompanyAdd(CompanyAddress companyAddress) {
-        return repository.save(companyAddress);
+
+        @Override
+        public CompanyAddress saveCompanyAddress(CompanyAddress address) {
+
+            // check if record already exists for this appId
+            CompanyAddress existing =
+                    repository.findByAppId(address.getAppId());
+
+            // if exists → convert save into update
+            if (existing != null) {
+                address.setId(existing.getId());
+            }
+
+            return repository.save(address);
+        }
     }
-}
+
+

@@ -1,7 +1,10 @@
 package com.tejait.batch15.service;
 
+import com.tejait.batch15.model.CompanyAddress;
 import com.tejait.batch15.model.CompanyDetails;
 
 public interface CompanyDetailsService {
-    CompanyDetails savecompanyDetails(CompanyDetails companyDetails);
+
+
+    CompanyDetails saveCompanyDetails(CompanyDetails details);
 }

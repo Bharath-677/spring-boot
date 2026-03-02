@@ -6,19 +6,24 @@ import com.tejait.batch15.service.BusinessProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @AllArgsConstructor
 @Service
 public class BusinessProductServiceImpl implements BusinessProductService {
 
-    BusinessProductRepository repository;
+    private BusinessProductRepository repository;
 
     @Override
-    public BusinessProduct savebusinessProducts(BusinessProduct businessProduct) {
+    public BusinessProduct saveBusinessProduct(BusinessProduct product) {
 
-        return repository.save(businessProduct);
+        // check if record already exists for this appId
+        BusinessProduct existing =
+                repository.findByAppId(product.getAppId());
+
+        // if exists → convert save into update
+        if (existing != null) {
+            product.setId(existing.getId());
+        }
+
+        return repository.save(product);
     }
-
-
 }

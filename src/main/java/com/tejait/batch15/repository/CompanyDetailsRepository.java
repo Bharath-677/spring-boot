@@ -10,7 +10,7 @@ import java.util.List;
 public interface CompanyDetailsRepository extends JpaRepository<CompanyDetails,Integer> {
 
 
-    public CompanyDetails findByAppId(int appId);
+public CompanyDetails findByAppId(int appId);
 
     ;
 }

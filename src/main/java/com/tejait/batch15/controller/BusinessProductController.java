@@ -7,24 +7,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
-@RestController
 @AllArgsConstructor
+@RestController
 @RequestMapping("loans")
 public class BusinessProductController {
 
+    private BusinessProductService service;
 
-    BusinessProductService service;
+    @RequestMapping(
+            value = "saveProductDetails/{appId}",
+            method = {RequestMethod.POST, RequestMethod.PUT}
+    )
+    public ResponseEntity<BusinessProduct> saveBusinessProduct(
+            @PathVariable int appId,
+            @RequestBody BusinessProduct product) {
 
+        // bind appId from URL
+        product.setAppId(appId);
 
+        BusinessProduct businessProduct =
+                service.saveBusinessProduct(product);
 
-    @PostMapping("saveProductDetails")
-    public ResponseEntity<BusinessProduct> savebussinesProduct(@RequestBody BusinessProduct businessProduct){
-        BusinessProduct savedbp=service.savebusinessProducts(businessProduct);
-        return  new ResponseEntity<>(savedbp, HttpStatus.CREATED);
+        // UPDATE case
+        if (product.getId() != 0) {
+            return new ResponseEntity<>(businessProduct, HttpStatus.OK);
+        }
 
+        // SAVE case
+        return new ResponseEntity<>(businessProduct, HttpStatus.CREATED);
     }
-
 }

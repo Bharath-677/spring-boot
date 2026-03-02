@@ -7,8 +7,5 @@ import java.util.Optional;
 public interface BusinessProductService {
 
 
-    BusinessProduct savebusinessProducts(BusinessProduct businessProduct);
-
-
-
+    BusinessProduct saveBusinessProduct(BusinessProduct product);
 }
