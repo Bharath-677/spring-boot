@@ -32,7 +32,7 @@ public class GlobelException {
 	@ExceptionHandler(MailAlredyExists.class)
 	public ResponseEntity<ErrorDtls> mailAlredyExists(HttpServletRequest request){
 		ErrorDtls error=new ErrorDtls(new Date(), 410, "mail alredy exists", "Mail Alredy Exists", request.getRequestURI());
-		
+
 		return new ResponseEntity<ErrorDtls>(error, HttpStatus.BAD_REQUEST);
 		
 	}
@@ -44,6 +44,11 @@ public class GlobelException {
 		
 		
 	}
+
+
+
+
+
 	
 	
 

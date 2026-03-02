@@ -6,15 +6,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
+
+//@Data
 @Table(name="employee_b15")
 @Entity   //it is created tables in database
 public class Employee {
-	
+
 	@Id   //primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
 	private int id;
@@ -26,12 +30,12 @@ public class Employee {
 	private int age;
 	private long salary;
 	private String empCode;
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 }
