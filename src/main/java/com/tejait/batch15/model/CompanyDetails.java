@@ -16,6 +16,7 @@ public class CompanyDetails {
     private  int id;
     private  int appId;
     private  String companyName;
+    private  String IndustrialType;
     private String dateOfEstablish;
     private  String gstin;
     private  String companyPan;

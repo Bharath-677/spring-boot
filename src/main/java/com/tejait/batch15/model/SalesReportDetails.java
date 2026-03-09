@@ -1,42 +1,39 @@
 package com.tejait.batch15.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
-@Entity
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class SalesReport {
+@Entity
+@Table(name = "sales_report")
+public class SalesReportDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private Integer appId;
 
-    private LocalDate date;
+    private String date;
 
-    private String orderNo;
+    // Matches {{record.orderno}}
+    private String orderno;
 
-    @Column(unique = true)
-    private String invoiceNo;
+    // Matches {{record.invoiceno}}
+    private String invoiceno;
 
     private String partyName;
 
-    private String partyPhoneNo;
+    // Matches {{record.partyPhoneNum}}
+    private String partyPhoneNum;
 
-    private BigDecimal totalAmount;
+    private Double totalAmount;
 
-    private BigDecimal receivedPaidAmount;
+    // Matches {{record.recievedOrPaidAmount}}
+    private Double recievedOrPaidAmount;
 
-    private BigDecimal balanceAmount;
+    private Double balanceAmount;
 }
